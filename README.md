@@ -17,5 +17,6 @@ npm run build
 
 ### Test site
 ```
-[r2h]: https://travel-list-todo.web.app/
+[test site](https://travel-list-todo.web.app/)
 ```
+[test site](https://travel-list-todo.web.app/)
