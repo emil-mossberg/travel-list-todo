@@ -15,10 +15,7 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
+### Test site
 ```
-npm run lint
+[r2h]: https://travel-list-todo.web.app/
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
