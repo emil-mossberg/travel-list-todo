@@ -64,14 +64,11 @@ export default {
     buildSuggestionsList(result, word) {
       var tempSearchResults = [];
 
-      if (
-        result.length === 1 &&
-        result[0].name.common.toLowerCase() === word.toLowerCase()
-      ) {
+      if (result.length === 1 && result[0].name.common === word) {
         this.wordCompleted = true;
-      } else {
-        result.forEach((countryHit) => {
-          tempSearchResults.push(countryHit.name.common);
+      } else if (Array.isArray(result)) {
+        result.forEach((country) => {
+          tempSearchResults.push(country.name.common);
         });
         this.wordCompleted = false;
       }
@@ -87,7 +84,7 @@ export default {
         );
       } else {
         axios
-          .get(`${constants.BASE_URL_API}${word}`)
+          .get(`${constants.BASE_URL_API}${word}`, { validateStatus: false })
           .then((response) => {
             this.cachedSearchResult[word] = JSON.stringify(response.data);
             this.buildSuggestionsList(response.data, word);

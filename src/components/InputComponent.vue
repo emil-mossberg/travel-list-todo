@@ -2,16 +2,16 @@
   <div class="input-component" v-click-outside="hideDropDown">
     <input
       id="new-todo"
-      type="text"
       autocomplete="off"
       list="todo-list-autocomplete"
       placeholder="Country I want to visit"
+      type="text"
       v-model="searchWord"
       v-on:keyup="handleInput"
     />
     <button
-      :disabled="!enableAddButton"
       class="add-button"
+      :disabled="!enableAddButton"
       v-on:click="addCountry"
     >
       Add Country
@@ -25,10 +25,10 @@
         class="autocomplete-li"
         :ref="'list-item' + index"
         :class="{ focus: index === focus }"
+        :key="index"
         @mouseover="setFocus(index)"
         v-for="(country, index) in options"
         v-on:click="setCountry(country)"
-        :key="index"
       >
         {{ country }}
       </li>
@@ -64,9 +64,8 @@ export default {
 
     handleInput(event) {
       if (
-        (event.keyCode === constants.UP_ARROW_CODE ||
-          event.keyCode === constants.DOWN_ARROW_CODE) &&
-        this.options.length > 1
+        event.keyCode === constants.UP_ARROW_CODE ||
+        event.keyCode === constants.DOWN_ARROW_CODE
       ) {
         if (this.focus === null) {
           this.focus = 0;
@@ -88,7 +87,7 @@ export default {
         }
         this.searchWord = this.options[this.focus];
       } else {
-        this.focus = 0;
+        this.focus = null;
         this.showDropDown = true;
         this.$emit("search-word", this.searchWord);
       }
